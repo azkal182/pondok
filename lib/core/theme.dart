@@ -34,25 +34,25 @@ final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   textTheme: TextTheme(
       displayLarge: const TextStyle(
-        // fontSize: 72,
-        // fontWeight: FontWeight.bold,
+        fontSize: 72,
+        fontWeight: FontWeight.bold,
       ),
       titleSmall: GoogleFonts.roboto(
-        // fontSize: 12.0,
-        // fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+        fontWeight: FontWeight.w500,
       ),
 
       titleMedium: GoogleFonts.roboto(
-        // fontSize: 16.0,
-        // fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+        fontWeight: FontWeight.w600,
       ),
 
       titleLarge: GoogleFonts.roboto(
-        // fontSize: 22.0,
-        // fontWeight: FontWeight.w700,
+        fontSize: 22.0,
+        fontWeight: FontWeight.w700,
       ),
       bodyMedium: GoogleFonts.inter(
-          // fontSize: 16
+          fontSize: 16
       )
   ),
 
