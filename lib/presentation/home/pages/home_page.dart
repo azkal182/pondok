@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: ScreenUtil().bottomBarHeight + 80),
       child: Column(
         children: [
           Container(
@@ -173,10 +174,11 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )),
                 Positioned(
-                    top: ScreenUtil().statusBarHeight + 5,
+                    top: ScreenUtil().statusBarHeight,
                     left: 20,
                     right: 20,
                     child: Row(
+
                       children: [
                         Text(
                           'PP Darul Falah Amtsilati',
@@ -191,15 +193,17 @@ class _HomePageState extends State<HomePage> {
                               context.go('/qiblat');
                             },
                             style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(0),
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               backgroundColor: Colors
-                                  .transparent, // Agar tampilan seperti Container
+                                  .transparent,
                               elevation: 0, //
                             ),
                             child: Icon(
                               Icons.arrow_circle_up_outlined,
                               color: Colors.white,
-                              size: 30.sp,
+                              size: 35.sp,
                             ))
                       ],
                     )),
