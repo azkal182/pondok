@@ -14,11 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> menuItems = [
-    {'icon': Icons.play_circle_fill, 'title': 'Dakwah'},
-    {'icon': Icons.book, 'title': 'Buku Santri'},
-    {'icon': Icons.account_circle, 'title': 'Profile'},
-    {'icon': Icons.store, 'title': 'Store'},
-    {'icon': Icons.calendar_today, 'title': 'Shalat'},
+    {'icon': Icons.play_circle_fill, 'title': 'Dakwah', "path":"/dakwah"},
+    {'icon': Icons.book, 'title': 'Buku Santri', "path":"/buku-santri"},
+    {'icon': Icons.account_circle, 'title': 'Profile', "path":"/profile"},
+    {'icon': Icons.store, 'title': 'Store', "path":"/store"},
+    {'icon': Icons.calendar_today, 'title': 'Shalat', "path":"/sholat"},
   ];
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               for (int i = 0; i < 5; i++)
                                 menu.MenuItem(
-                                  path: '/',
+                                  path: menuItems[i]['path'],
                                   icon: menuItems[i]['icon'],
                                   title: menuItems[i]['title'],
                                 ),

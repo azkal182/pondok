@@ -1,11 +1,16 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart";
+import "package:pondok/presentation/buku_santri/pages/buku_santri_page.dart";
 import "package:pondok/presentation/calendar/pages/calendar_page.dart";
+import "package:pondok/presentation/dakwah/pages/dakwah_page.dart";
 import "package:pondok/presentation/home/pages/home_page.dart";
+import "package:pondok/presentation/profile/pages/profile_page.dart";
 import "package:pondok/presentation/quran/pages/quran_page.dart";
 import "package:pondok/presentation/setting/pages/setting_page.dart";
+import "package:pondok/presentation/sholat/pages/sholat_page.dart";
 import "package:pondok/presentation/sidafa/pages/sidafa_page.dart";
+import "package:pondok/presentation/store/pages/store_page.dart";
 
 
 GoRouter appRouter() {
@@ -90,19 +95,39 @@ GoRouter appRouter() {
               GoRoute(
                 path: "/",
                 builder: (context, state) => const HomePage(),
-                // routes: [
-                //   GoRoute(
-                //       parentNavigatorKey: parentKey,
-                //       path: "profile",
-                //       builder: (context, state) => const ProfilePage()
-                //     routes: [
-                //       GoRoute(
-                //         path: "super-detail",
-                //         builder: (context, state) => const MainScreen3(),
-                //       ),
-                //     ],
-                //   ),
-                // ],
+                routes: [
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/sholat",
+                      builder: (context, state) => const SholatPage()
+                    // routes: [
+                    //   GoRoute(
+                    //     path: "super-detail",
+                    //     builder: (context, state) => const MainScreen3(),
+                    //   ),
+                    // ],
+                  ),
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/dakwah",
+                      builder: (context, state) => const DakwahPage()
+                  ),
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/buku-santri",
+                      builder: (context, state) => const BukuSantriPage()
+                  ),
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/profile",
+                      builder: (context, state) => const ProfilePage()
+                  ),
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/store",
+                      builder: (context, state) => const StorePage()
+                  ),
+                ],
               ),
             ],
           ),
