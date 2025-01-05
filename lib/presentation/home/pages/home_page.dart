@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pondok/core/widgets/menu_item.dart' as menu;
 import 'package:pondok/core/widgets/poster_carousel.dart';
@@ -14,11 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> menuItems = [
-    {'icon': Icons.play_circle_fill, 'title': 'Dakwah', "path":"/dakwah"},
-    {'icon': Icons.book, 'title': 'Buku Santri', "path":"/buku-santri"},
-    {'icon': Icons.account_circle, 'title': 'Profile', "path":"/profile"},
-    {'icon': Icons.store, 'title': 'Store', "path":"/store"},
-    {'icon': Icons.calendar_today, 'title': 'Shalat', "path":"/sholat"},
+    {'icon': Icons.play_circle_fill, 'title': 'Dakwah', "path": "/dakwah"},
+    {'icon': Icons.book, 'title': 'Buku Santri', "path": "/buku-santri"},
+    {'icon': Icons.account_circle, 'title': 'Profile', "path": "/profile"},
+    {'icon': Icons.store, 'title': 'Store', "path": "/store"},
+    {'icon': Icons.calendar_today, 'title': 'Shalat', "path": "/sholat"},
   ];
   @override
   Widget build(BuildContext context) {
@@ -172,17 +173,36 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )),
                 Positioned(
-                  top: ScreenUtil().statusBarHeight + 5,
-                  left: 20,
-                  right: 20,
-                  child: Text(
-                    'PP Darul Falah Amtsilati',
-                    style: GoogleFonts.roboto(
-                        fontSize: 18.sp,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    top: ScreenUtil().statusBarHeight + 5,
+                    left: 20,
+                    right: 20,
+                    child: Row(
+                      children: [
+                        Text(
+                          'PP Darul Falah Amtsilati',
+                          style: GoogleFonts.roboto(
+                              fontSize: 18.sp,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                            onPressed: () {
+                              context.go('/qiblat');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(0),
+                              backgroundColor: Colors
+                                  .transparent, // Agar tampilan seperti Container
+                              elevation: 0, //
+                            ),
+                            child: Icon(
+                              Icons.arrow_circle_up_outlined,
+                              color: Colors.white,
+                              size: 30.sp,
+                            ))
+                      ],
+                    )),
               ],
             ),
           ),

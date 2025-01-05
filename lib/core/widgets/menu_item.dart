@@ -15,7 +15,6 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(icon);
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min, // Memastikan tinggi menyesuaikan konten

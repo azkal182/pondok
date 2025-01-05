@@ -6,6 +6,7 @@ import "package:pondok/presentation/calendar/pages/calendar_page.dart";
 import "package:pondok/presentation/dakwah/pages/dakwah_page.dart";
 import "package:pondok/presentation/home/pages/home_page.dart";
 import "package:pondok/presentation/profile/pages/profile_page.dart";
+import "package:pondok/presentation/qiblat/pages/qiblat_page.dart";
 import "package:pondok/presentation/quran/pages/quran_page.dart";
 import "package:pondok/presentation/setting/pages/setting_page.dart";
 import "package:pondok/presentation/sholat/pages/sholat_page.dart";
@@ -126,6 +127,11 @@ GoRouter appRouter() {
                       parentNavigatorKey: parentKey,
                       path: "/store",
                       builder: (context, state) => const StorePage()
+                  ),
+                  GoRoute(
+                      parentNavigatorKey: parentKey,
+                      path: "/qiblat",
+                      builder: (context, state) => const QiblatPage()
                   ),
                 ],
               ),

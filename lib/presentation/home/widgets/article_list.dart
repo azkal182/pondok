@@ -32,7 +32,7 @@ class _ArticleListState extends State<ArticleList> {
               ),
             ),
             BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-              print(state);
+              // print(state);
               if (state is PostLoading) {
                 return ListView.builder(
                   shrinkWrap: true,
