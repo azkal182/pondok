@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 // Custom ColorScheme for Light Theme
 final ColorScheme lightColorScheme =  ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xff009788),
+  primary: Color(0xFF15527C),
   onPrimary: Colors.white,
   secondary: Colors.amber,
   onSecondary: Colors.black,
@@ -29,6 +29,7 @@ final ColorScheme darkColorScheme = ColorScheme(
 
 // Light Theme
 final ThemeData lightTheme = ThemeData(
+  scaffoldBackgroundColor: Color(0xFFF3F3F3),
   colorScheme: lightColorScheme,
   useMaterial3: true,
   textTheme: TextTheme(

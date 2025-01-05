@@ -40,12 +40,12 @@ class MenuItem extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     color: Color(0xff15527C).withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
                     icon,
                     size: 35,
-                    color: Colors.black54,
+                    color: Colors.black,
                   ),
                 ),
               ),
