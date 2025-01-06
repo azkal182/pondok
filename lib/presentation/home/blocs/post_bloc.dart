@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pondok/core/utils/html_to_json_parser.dart';
@@ -16,15 +15,18 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(PostLoading());
       final result = await getPosts();
       result.fold(
-            (failure) => emit(PostError(failure.message)),
-            (posts) {
-              final processedPosts = posts.map((post) {
-                final parsedContent = HtmlToJsonHelper.convertHtmlToJson(post.content);
-                final parseOverview = HtmlToJsonHelper.cleanHtml(post.overview);
-                return post.copyWith(content: parsedContent.toString(), overview: parseOverview.toString());
-              }).toList();
-              emit(PostLoaded(processedPosts));
-            },
+        (failure) => emit(PostError(failure.message)),
+        (posts) {
+          final processedPosts = posts.map((post) {
+            final parsedContent =
+                HtmlToJsonHelper.convertHtmlToJson(post.content);
+            final parseOverview = HtmlToJsonHelper.cleanHtml(post.overview);
+            return post.copyWith(
+                content: parsedContent.toString(),
+                overview: parseOverview.toString());
+          }).toList();
+          emit(PostLoaded(processedPosts));
+        },
       );
     });
   }

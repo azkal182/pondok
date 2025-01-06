@@ -6,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:pondok/app_router.dart';
 import 'package:pondok/core/theme.dart';
+import 'package:pondok/presentation/home/blocs/poster_bloc.dart';
 import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
 import 'package:pondok/presentation/home/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'injection.dart' as di;
-
 
 void main() {
   di.init();
@@ -32,11 +32,14 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: false,
-      builder: (_, child){
+      builder: (_, child) {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => di.sl<PrayerTimesBloc>(), // Inject PrayerTimesBloc
+              create: (context) => di.sl<PrayerTimesBloc>(),
+            ),
+            BlocProvider(
+              create: (_) => di.sl<PosterBloc>()..add(FetchPostersEvent()),
             ),
           ],
           child: MaterialApp.router(

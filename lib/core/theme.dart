@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Custom ColorScheme for Light Theme
-final ColorScheme lightColorScheme =  ColorScheme(
+final ColorScheme lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF15527C),
   onPrimary: Colors.white,
@@ -41,21 +41,15 @@ final ThemeData lightTheme = ThemeData(
         fontSize: 12.0,
         fontWeight: FontWeight.w500,
       ),
-
       titleMedium: GoogleFonts.roboto(
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
       ),
-
       titleLarge: GoogleFonts.roboto(
         fontSize: 22.0,
         fontWeight: FontWeight.w700,
       ),
-      bodyMedium: GoogleFonts.inter(
-          fontSize: 16
-      )
-  ),
-
+      bodyMedium: GoogleFonts.inter(fontSize: 16)),
 );
 
 // Dark Theme

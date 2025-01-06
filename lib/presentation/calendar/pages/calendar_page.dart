@@ -1226,13 +1226,15 @@ class _CalendarPageState extends State<CalendarPage> {
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium
-                                        ?.copyWith(fontSize: 14, color: dayColor),
+                                        ?.copyWith(
+                                            fontSize: 14, color: dayColor),
                                   ),
                                   Text('${date.day}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge
-                                          ?.copyWith(fontSize: 20, color: dayColor)),
+                                          ?.copyWith(
+                                              fontSize: 20, color: dayColor)),
                                 ],
                               ),
                               const SizedBox(height: 1),

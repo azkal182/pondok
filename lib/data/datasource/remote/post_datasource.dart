@@ -13,7 +13,9 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
 
   @override
   Future<List<PostModel>> fetchPosts() async {
-    final response = await client.get('posts', queryParameters: {'_embed': true, 'per_page':5});
+    final response = await client.get(
+        'https://amtsilatipusat.net/wp-json/wp/v2/posts',
+        queryParameters: {'_embed': true, 'per_page': 5});
     final List data = response.data;
     return data.map((post) => PostModel.fromJson(post)).toList();
   }

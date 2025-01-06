@@ -1,6 +1,4 @@
-
 part of 'post_bloc.dart';
-
 
 abstract class PostState extends Equatable {
   @override

@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:pondok/core/utils/date.dart';
 import 'package:pondok/core/widgets/menu_item.dart' as menu;
-import 'package:pondok/core/widgets/poster_carousel.dart';
+import 'package:pondok/presentation/home/widgets/poster_carousel.dart';
 import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
 import 'package:pondok/presentation/home/widgets/article_list.dart';
 
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         );
 
     _currentTime = _formatCurrentTime();
-    timerCurrentTime = Timer.periodic(const Duration(seconds: 1), (timer){
+    timerCurrentTime = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (mounted) {
         setState(() {
           _currentTime = _formatCurrentTime();
@@ -48,7 +49,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
 
   void startCountdown(DateTime nextTime, String prayerName) {
     timer?.cancel();
@@ -79,18 +79,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Map<String, dynamic>> menuItems = [
-    {'icon': Icons.play_circle_fill, 'title': 'Dakwah', "path": "/dakwah"},
-    {'icon': Icons.book, 'title': 'Buku Santri', "path": "/buku-santri"},
-    {'icon': Icons.account_circle, 'title': 'Profile', "path": "/profile"},
-    {'icon': Icons.store, 'title': 'Store', "path": "/store"},
-    {'icon': Icons.calendar_today, 'title': 'Shalat', "path": "/sholat"},
+    {'icon': FeatherIcons.youtube, 'title': 'Dakwah', "path": "/dakwah"},
+    {'icon': FeatherIcons.bookOpen, 'title': 'Buku Santri', "path": "/buku-santri"},
+    {'icon': FeatherIcons.command, 'title': 'Profile', "path": "/profile"},
+    {'icon': FeatherIcons.shoppingBag, 'title': 'Store', "path": "/store"},
+    {'icon': FeatherIcons.calendar, 'title': 'Shalat', "path": "/sholat"},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: ScreenUtil().bottomBarHeight + 80),
+          physics: const ClampingScrollPhysics(),
+          padding: EdgeInsets.only(bottom: ScreenUtil().bottomBarHeight + 80),
       child: Column(
         children: [
           Container(
@@ -192,7 +193,8 @@ class _HomePageState extends State<HomePage> {
                                   'name': e.name,
                                   'time': _parseTime(e.time),
                                 })
-                        .where((e)=>e['name'] != 'Sunset' && e['name'] != 'Terbit')
+                            .where((e) =>
+                                e['name'] != 'Sunset' && e['name'] != 'Terbit')
                             .toList();
 
                         final nextPrayer = todayPrayerTimes.firstWhere(
@@ -229,53 +231,54 @@ class _HomePageState extends State<HomePage> {
                                     fontWeight: FontWeight.bold,
                                     height: 1),
                               ),
-                            if (nextPrayerName != null && remainingTime.inSeconds > 0)
+                            if (nextPrayerName != null &&
+                                remainingTime.inSeconds > 0)
                               Text(
                                 "$nextPrayerName ${_formatTime(nextPrayerTime!)} ( - ${_formatDuration(remainingTime)} )",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 16.sp,
+                                    fontSize: 18.sp,
                                     color: Color(0xFF363636),
                                     fontWeight: FontWeight.w600),
                               ),
-                                Text(
-                      '${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now())} / ${DateHelper.convertToHijri(DateTime.now(), pattern: "dd MMMM yyyy")}',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 14.sp,
-                                    color: Color(0xFF363636),
+                            Text(
+                              '${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now())} / ${DateHelper.convertToHijri(DateTime.now(), pattern: "dd MMMM yyyy")}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 14.sp,
+                                color: Color(0xFF363636),
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  top: 2,
+                                  bottom: 2,
+                                  left: 10,
+                                  right: 15), // Jarak antara konten dan tepi
+                              decoration: BoxDecoration(
+                                color:
+                                    Color(0xFFD9D9D9), // Warna latar belakang
+                                borderRadius:
+                                    BorderRadius.circular(16), // Sudut membulat
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize
+                                    .min, // Agar Row hanya sesuai konten
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.red,
+                                    size: 16.sp,
                                   ),
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                      top: 2,
-                                      bottom: 2,
-                                      left: 10,
-                                      right: 15), // Jarak antara konten dan tepi
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFD9D9D9), // Warna latar belakang
-                                    borderRadius:
-                                        BorderRadius.circular(16), // Sudut membulat
+                                  SizedBox(width: 8), // Jarak antar elemen
+                                  Text(
+                                    "Bangsri, Kab Jepara",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize
-                                        .min, // Agar Row hanya sesuai konten
-                                    children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        color: Colors.red,
-                                        size: 16.sp,
-                                      ),
-                                      SizedBox(width: 8), // Jarak antar elemen
-                                      Text(
-                                        "Bangsri, Kab Jepara",
-                                        style: GoogleFonts.roboto(
-                                          fontSize: 12.sp,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-
+                                ],
+                              ),
+                            )
                           ],
                         );
                       } else if (state is PrayerTimesError) {
@@ -284,63 +287,6 @@ class _HomePageState extends State<HomePage> {
                       return const Center(child: Text('No Data'));
                     },
                   ),
-                  // Column(
-                  //   children: [
-                  //     Text(
-                  //       "03:45",
-                  //       style: GoogleFonts.roboto(
-                  //           fontSize: 40.sp,
-                  //           color: Color(0xFF363636),
-                  //           fontWeight: FontWeight.bold,
-                  //           height: 1),
-                  //     ),
-                  //     Text(
-                  //       "IMSAK 04:55 (-02:00:00)",
-                  //       style: GoogleFonts.roboto(
-                  //           fontSize: 16.sp,
-                  //           color: Color(0xFF363636),
-                  //           fontWeight: FontWeight.w600),
-                  //     ),
-                  //     Text(
-                  //       "11 Desember 2024 / 02 Jumadul Awal 1446",
-                  //       style: GoogleFonts.roboto(
-                  //         fontSize: 12.sp,
-                  //         color: Color(0xFF363636),
-                  //       ),
-                  //     ),
-                  //     SizedBox(height: 5),
-                  //     Container(
-                  //       padding: const EdgeInsets.only(
-                  //           top: 2,
-                  //           bottom: 2,
-                  //           left: 10,
-                  //           right: 15), // Jarak antara konten dan tepi
-                  //       decoration: BoxDecoration(
-                  //         color: Color(0xFFD9D9D9), // Warna latar belakang
-                  //         borderRadius:
-                  //             BorderRadius.circular(16), // Sudut membulat
-                  //       ),
-                  //       child: Row(
-                  //         mainAxisSize: MainAxisSize
-                  //             .min, // Agar Row hanya sesuai konten
-                  //         children: [
-                  //           Icon(
-                  //             Icons.location_on,
-                  //             color: Colors.red,
-                  //             size: 16.sp,
-                  //           ),
-                  //           SizedBox(width: 8), // Jarak antar elemen
-                  //           Text(
-                  //             "Bangsri, Kab Jepara",
-                  //             style: GoogleFonts.roboto(
-                  //               fontSize: 12.sp,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     )
-                  //   ],
-                  // )
                 ),
                 Positioned(
                     top: ScreenUtil().statusBarHeight,
@@ -351,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'PP Darul Falah Amtsilati',
                           style: GoogleFonts.roboto(
-                              fontSize: 18,
+                              fontSize: 20.sp,
                               color: Theme.of(context).colorScheme.onPrimary,
                               fontWeight: FontWeight.bold),
                         ),
@@ -381,51 +327,6 @@ class _HomePageState extends State<HomePage> {
           PosterCarousel(),
           SizedBox(height: 10.h),
           ArticleList(),
-
-          // Transform.translate(
-          //   offset: Offset(0, -160.h),
-          //   child: Image.asset(
-          //     'assets/images/monumen.png',
-          //     height: 250.h,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
-          // // SizedBox(height: 100.h),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       const Text(
-          //         "Daftar Menu",
-          //         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          //       ),
-          //       GestureDetector(
-          //         onTap: () {
-          //           // Aksi untuk tombol "Lihat Semua"
-          //         },
-          //         child: const Text(
-          //           "Lihat Semua",
-          //           style: TextStyle(fontSize: 14, color: Colors.grey),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       for (int i = 0; i < 5; i++)
-          //         menu.MenuItem(
-          //           path: '/',
-          //           icon: menuItems[i]['icon'],
-          //           title: menuItems[i]['title'],
-          //         ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     ));
@@ -454,9 +355,8 @@ class _HomePageState extends State<HomePage> {
     return "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
   }
 
-String _formatCurrentTime() {
-  final now = DateTime.now();
-  return '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}';
-}
-
+  String _formatCurrentTime() {
+    final now = DateTime.now();
+    return '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}';
+  }
 }

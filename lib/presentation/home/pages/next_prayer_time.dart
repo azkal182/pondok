@@ -21,13 +21,13 @@ class _NextPrayerPageState extends State<NextPrayerPage> {
   void initState() {
     super.initState();
     context.read<PrayerTimesBloc>().add(
-      LoadPrayerTimes(
-        date: DateTime.now(),
-        latitude: -6.5235,
-        longitude: 110.7633,
-        timezone: 7,
-      ),
-    );
+          LoadPrayerTimes(
+            date: DateTime.now(),
+            latitude: -6.5235,
+            longitude: 110.7633,
+            timezone: 7,
+          ),
+        );
   }
 
   void startCountdown(DateTime nextTime, String prayerName) {
@@ -73,13 +73,13 @@ class _NextPrayerPageState extends State<NextPrayerPage> {
             final now = DateTime.now();
             final todayPrayerTimes = state.prayerTimes.prayerTimes
                 .map((e) => {
-              'name': e.name,
-              'time': _parseTime(e.time),
-            })
+                      'name': e.name,
+                      'time': _parseTime(e.time),
+                    })
                 .toList();
 
             final nextPrayer = todayPrayerTimes.firstWhere(
-                  (e) => (e['time'] as DateTime).isAfter(now),
+              (e) => (e['time'] as DateTime).isAfter(now),
               orElse: () {
                 return {
                   'name': todayPrayerTimes.first['name'] as String,

@@ -7,7 +7,8 @@ class MyText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
 
-  const MyText({super.key,
+  const MyText({
+    super.key,
     required this.text,
     this.style,
     this.textAlign,

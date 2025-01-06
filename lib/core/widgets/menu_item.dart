@@ -6,12 +6,8 @@ class MenuItem extends StatelessWidget {
   final String title;
   final String path;
 
-  const MenuItem({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.path
-  });
+  const MenuItem(
+      {super.key, required this.icon, required this.title, required this.path});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,8 @@ class MenuItem extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 0),
-                backgroundColor: Colors.transparent, // Agar tampilan seperti Container
+                backgroundColor:
+                    Colors.transparent, // Agar tampilan seperti Container
                 elevation: 0, // Menghilangkan bayangan
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),

@@ -38,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_feather_icons: ^2.0.0+1
   flutter_localization: ^0.3.0
   flutter_localizations:
     sdk: flutter

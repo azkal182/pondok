@@ -13,7 +13,6 @@ import "package:pondok/presentation/sholat/pages/sholat_page.dart";
 import "package:pondok/presentation/sidafa/pages/sidafa_page.dart";
 import "package:pondok/presentation/store/pages/store_page.dart";
 
-
 GoRouter appRouter() {
   final parentKey = GlobalKey<NavigatorState>();
   final shellKey = GlobalKey<NavigatorState>();
@@ -30,7 +29,7 @@ GoRouter appRouter() {
                 title: "Home",
                 activeForegroundColor: Theme.of(context).colorScheme.primary,
                 inactiveForegroundColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
             PersistentRouterTabConfig(
@@ -39,7 +38,7 @@ GoRouter appRouter() {
                 title: "Al-Qur'an",
                 activeForegroundColor: Theme.of(context).colorScheme.primary,
                 inactiveForegroundColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
             PersistentRouterTabConfig(
@@ -48,7 +47,7 @@ GoRouter appRouter() {
                 title: "Sidafa",
                 activeForegroundColor: Theme.of(context).colorScheme.primary,
                 inactiveForegroundColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
             PersistentRouterTabConfig(
@@ -57,7 +56,7 @@ GoRouter appRouter() {
                 title: "Kalender",
                 activeForegroundColor: Theme.of(context).colorScheme.primary,
                 inactiveForegroundColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
             PersistentRouterTabConfig(
@@ -66,7 +65,7 @@ GoRouter appRouter() {
                 title: "Settings",
                 activeForegroundColor: Theme.of(context).colorScheme.primary,
                 inactiveForegroundColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
           ],
@@ -101,38 +100,33 @@ GoRouter appRouter() {
                       parentNavigatorKey: parentKey,
                       path: "/sholat",
                       builder: (context, state) => const SholatPage()
-                    // routes: [
-                    //   GoRoute(
-                    //     path: "super-detail",
-                    //     builder: (context, state) => const MainScreen3(),
-                    //   ),
-                    // ],
-                  ),
+                      // routes: [
+                      //   GoRoute(
+                      //     path: "super-detail",
+                      //     builder: (context, state) => const MainScreen3(),
+                      //   ),
+                      // ],
+                      ),
                   GoRoute(
                       parentNavigatorKey: parentKey,
                       path: "/dakwah",
-                      builder: (context, state) => const DakwahPage()
-                  ),
+                      builder: (context, state) => const DakwahPage()),
                   GoRoute(
                       parentNavigatorKey: parentKey,
                       path: "/buku-santri",
-                      builder: (context, state) => const BukuSantriPage()
-                  ),
+                      builder: (context, state) => const BukuSantriPage()),
                   GoRoute(
                       parentNavigatorKey: parentKey,
                       path: "/profile",
-                      builder: (context, state) => const ProfilePage()
-                  ),
+                      builder: (context, state) => const ProfilePage()),
                   GoRoute(
                       parentNavigatorKey: parentKey,
                       path: "/store",
-                      builder: (context, state) => const StorePage()
-                  ),
+                      builder: (context, state) => const StorePage()),
                   GoRoute(
                       parentNavigatorKey: parentKey,
                       path: "/qiblat",
-                      builder: (context, state) => const QiblatPage()
-                  ),
+                      builder: (context, state) => const QiblatPage()),
                 ],
               ),
             ],
@@ -150,16 +144,14 @@ GoRouter appRouter() {
             routes: <RouteBase>[
               GoRoute(
                   path: "/sidafa",
-                  builder: (context, state) => const SidafaPage()
-              ),
+                  builder: (context, state) => const SidafaPage()),
             ],
           ),
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
                   path: "/calendar",
-                  builder: (context, state) => const CalendarPage()
-              ),
+                  builder: (context, state) => const CalendarPage()),
             ],
           ),
           // The route branch for 3rd Tab
@@ -168,15 +160,15 @@ GoRouter appRouter() {
               GoRoute(
                   path: "/settings",
                   builder: (context, state) => const SettingPage()
-                // routes: [
-                //   GoRoute(
-                //     path: "/detail",
-                //     builder: (context, state) => const MainScreen2(
-                //       useRouter: true,
-                //     ),
-                //   )
-                // ]
-              ),
+                  // routes: [
+                  //   GoRoute(
+                  //     path: "/detail",
+                  //     builder: (context, state) => const MainScreen2(
+                  //       useRouter: true,
+                  //     ),
+                  //   )
+                  // ]
+                  ),
             ],
           ),
         ],

@@ -49,7 +49,9 @@ class HtmlToJsonHelper {
           'text': text,
           'format': 'normal', // Format normal untuk item list
           'type': isArabic(text) ? 'arabic' : 'text',
-          'number': listElement.localName == 'ol' ? index++ : null, // Menambahkan nomor urut untuk <ol>
+          'number': listElement.localName == 'ol'
+              ? index++
+              : null, // Menambahkan nomor urut untuk <ol>
         });
       }
     }
@@ -106,12 +108,12 @@ class HtmlToJsonHelper {
           content.add({
             'image': {
               'src': src,
-              'alt': alt ?? '', // Gunakan string kosong jika tidak ada atribut alt
+              'alt':
+                  alt ?? '', // Gunakan string kosong jika tidak ada atribut alt
             }
           });
         }
       }
-
     }
 
     return {'content': content};

@@ -1,6 +1,5 @@
 part of 'prayer_times_bloc.dart';
 
-
 abstract class PrayerTimesEvent extends Equatable {
   const PrayerTimesEvent();
 

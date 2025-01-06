@@ -42,20 +42,25 @@ class _CompassState extends State<Compass> with SingleTickerProviderStateMixin {
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: Text("Tidak dapat mendapatkan arah kiblat"));
+            return const Center(
+                child: Text("Tidak dapat mendapatkan arah kiblat"));
           }
 
           final qiblahDirection = snapshot.data!;
-          final deviceDirection = qiblahDirection.direction * (pi / 180) * -1; // Arah perangkat
-          final qiblahAngle = qiblahDirection.qiblah * (pi / 180) * -1; // Arah kiblat
+          final deviceDirection =
+              qiblahDirection.direction * (pi / 180) * -1; // Arah perangkat
+          final qiblahAngle =
+              qiblahDirection.qiblah * (pi / 180) * -1; // Arah kiblat
 
           if (isFirstUpdate) {
             begin = deviceDirection;
-            animation = Tween(begin: begin, end: begin).animate(_animationController);
+            animation =
+                Tween(begin: begin, end: begin).animate(_animationController);
             isFirstUpdate = false;
           } else {
             _animationController.reset();
-            animation = Tween(begin: begin, end: deviceDirection).animate(_animationController);
+            animation = Tween(begin: begin, end: deviceDirection)
+                .animate(_animationController);
             begin = deviceDirection;
             _animationController.forward();
           }
@@ -82,7 +87,8 @@ class _CompassState extends State<Compass> with SingleTickerProviderStateMixin {
                         animation: animation,
                         builder: (context, child) => Transform.rotate(
                           angle: animation.value,
-                          child: Image.asset('assets/images/compass_dark.png',
+                          child: Image.asset(
+                            'assets/images/compass_dark.png',
                           ),
                         ),
                       ),
@@ -94,7 +100,8 @@ class _CompassState extends State<Compass> with SingleTickerProviderStateMixin {
                           child: Container(
                             height: 350,
                             width: 350,
-                            child: Image.asset('assets/images/arrow.png',
+                            child: Image.asset(
+                              'assets/images/arrow.png',
                             ),
                           ),
                         ),

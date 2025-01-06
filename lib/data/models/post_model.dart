@@ -11,12 +11,11 @@ class PostModel extends Post {
     required super.date,
   });
 
-
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
       id: json['id'],
       thumbnail: json['_embedded']?["wp:featuredmedia"]?[0]?["media_details"]
-      ?["sizes"]?["thumbnail"]?["source_url"] ??
+              ?["sizes"]?["thumbnail"]?["source_url"] ??
           "https://amtsilatipusat.net/wp-content/uploads/2024/09/bckrnd.jpg",
       title: json['title']['rendered'],
       overview: json['excerpt']['rendered'],
@@ -26,11 +25,11 @@ class PostModel extends Post {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'thumbnail':thumbnail,
-    'title': title,
-    'overview': overview,
-    'content': content,
-    'date': date.toIso8601String(),
-  };
+        'id': id,
+        'thumbnail': thumbnail,
+        'title': title,
+        'overview': overview,
+        'content': content,
+        'date': date.toIso8601String(),
+      };
 }

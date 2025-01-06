@@ -10,7 +10,7 @@ class BukuSantriPage extends StatefulWidget {
 class _BukuSantriPageState extends State<BukuSantriPage> {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
         backgroundColor: Theme.of(context).colorScheme.primary,

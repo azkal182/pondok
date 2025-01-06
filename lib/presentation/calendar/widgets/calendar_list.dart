@@ -33,11 +33,14 @@ class CalendarList extends StatelessWidget {
               title: Container(
                 padding: EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(
-                  border: Border(left: BorderSide(width: 4, color: Colors.brown))
-                ),
+                    border: Border(
+                        left: BorderSide(width: 4, color: Colors.brown))),
                 child: Text(
-                  key.toUpperCase() == "HARI_SUNNAH" ? "Puasa":"Hari Besar & Libur Nasional",
-                  style: GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 16),
+                  key.toUpperCase() == "HARI_SUNNAH"
+                      ? "Puasa"
+                      : "Hari Besar & Libur Nasional",
+                  style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
               initiallyExpanded: true, // Expanded secara default
@@ -57,7 +60,10 @@ class CalendarList extends StatelessWidget {
                         endIndent: 20,
                       ), // Divider antar item
                     ListTile(
-                      title: Text(event['title'], style: Theme.of(context).textTheme.titleMedium,),
+                      title: Text(
+                        event['title'],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
                       subtitle: Text(
                         '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(DateTime.parse(event['date']))} / ${DateHelper.convertToHijri(DateTime.parse(event['date']), pattern: "dd MMMM yyyy")} ',
                         style: TextStyle(fontSize: 12),

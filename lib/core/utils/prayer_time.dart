@@ -491,11 +491,11 @@ class PrayerTimes {
 
     times[2] += getDhuhrMinutes() / 60; // Dhuhr
     if (mParams[1] == 1) // Maghrib
-        {
+    {
       times[5] = times[4] + mParams[2] / 60;
     }
     if (mParams[3] == 1) // Isha
-        {
+    {
       times[6] = times[5] + mParams[4] / 60;
     }
 

@@ -38,15 +38,16 @@ class _QiblatPageState extends State<QiblatPage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text("Qiblat"),
-      ),
-      body:  hasPermission ? const Compass() : const Text("Permission failed")
-    );
+    return Scaffold(
+        appBar: AppBar(
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: Text("Qiblat"),
+        ),
+        body:
+            hasPermission ? const Compass() : const Text("Permission failed"));
   }
 }

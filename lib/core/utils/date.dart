@@ -49,7 +49,6 @@ class DateHelper {
     return pattern;
   }
 
-
   static String getHijriRangeForMonth(DateTime date) {
     final firstDayOfMonth = DateTime(date.year, date.month, 1);
     final lastDayOfMonth = DateTime(date.year, date.month + 1, 0);

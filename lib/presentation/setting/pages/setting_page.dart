@@ -13,9 +13,10 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text("Setting", style: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimary
-        ),),
+        title: Text(
+          "Setting",
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
       ),
       body: Center(
         child: Text("Setting"),

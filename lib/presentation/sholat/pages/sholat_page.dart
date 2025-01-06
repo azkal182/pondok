@@ -63,7 +63,6 @@
 //   }
 // }
 
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,13 +88,13 @@ class _SholatPageState extends State<SholatPage> {
     super.initState();
     // Dispatch event untuk memuat jadwal sholat
     context.read<PrayerTimesBloc>().add(
-      LoadPrayerTimes(
-        date: DateTime.now(),
-        latitude: -6.5235,
-        longitude: 110.7633,
-        timezone: 7,
-      ),
-    );
+          LoadPrayerTimes(
+            date: DateTime.now(),
+            latitude: -6.5235,
+            longitude: 110.7633,
+            timezone: 7,
+          ),
+        );
   }
 
   // Memulai countdown
@@ -144,14 +143,14 @@ class _SholatPageState extends State<SholatPage> {
             final now = DateTime.now();
             final todayPrayerTimes = state.prayerTimes.prayerTimes
                 .map((e) => {
-              'name': e.name,
-              'time': _parseTime(e.time),
-            })
+                      'name': e.name,
+                      'time': _parseTime(e.time),
+                    })
                 .toList();
 
             // Cek apakah waktu sekarang melewati semua waktu sholat hari ini
             final nextPrayer = todayPrayerTimes.firstWhere(
-                  (e) => (e['time'] as DateTime).isAfter(now),
+              (e) => (e['time'] as DateTime).isAfter(now),
               orElse: () {
                 // Jika semua waktu sholat hari ini sudah lewat,
                 // ambil waktu sholat pertama hari berikutnya
@@ -181,16 +180,14 @@ class _SholatPageState extends State<SholatPage> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-
                     ),
                     child: Text(
                       "Sholat Berikutnya: $nextPrayerName\n${_formatDuration(remainingTime)}",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onPrimary
-                      ),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
                   ),
                 Expanded(
@@ -199,7 +196,12 @@ class _SholatPageState extends State<SholatPage> {
                     itemBuilder: (context, index) {
                       final prayerTime = state.prayerTimes.prayerTimes[index];
                       return ListTile(
-                        tileColor: prayerTime.name == nextName ? Theme.of(context).colorScheme.primary.withOpacity(0.2) : null,
+                        tileColor: prayerTime.name == nextName
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.2)
+                            : null,
                         title: Text(
                           prayerTime.name,
                           style: GoogleFonts.roboto(

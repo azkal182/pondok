@@ -8,7 +8,8 @@ class PrayerTimesRepositoryImpl implements PrayerTimesRepository {
   PrayerTimesRepositoryImpl(this.dataSource);
 
   @override
-  Future<PrayerTimesEntity> getPrayerTimes(DateTime date, double latitude, double longitude, double timezone) {
+  Future<PrayerTimesEntity> getPrayerTimes(
+      DateTime date, double latitude, double longitude, double timezone) {
     return dataSource.fetchPrayerTimes(date, latitude, longitude, timezone);
   }
 }
