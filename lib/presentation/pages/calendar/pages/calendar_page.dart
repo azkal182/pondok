@@ -4,7 +4,7 @@ import 'package:pondok/core/utils/date.dart';
 import 'package:pondok/core/utils/day_in_range.dart';
 import 'package:pondok/core/utils/event.dart';
 import 'package:pondok/core/utils/pasaran_jawa.dart';
-import 'package:pondok/presentation/calendar/widgets/calendar_list.dart';
+import 'package:pondok/presentation/pages/calendar/widgets/calendar_list.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:hijri/hijri_calendar.dart';
 

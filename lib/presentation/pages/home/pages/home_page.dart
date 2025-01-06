@@ -9,9 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:pondok/core/utils/date.dart';
 import 'package:pondok/core/widgets/menu_item.dart' as menu;
-import 'package:pondok/presentation/home/widgets/poster_carousel.dart';
-import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
-import 'package:pondok/presentation/home/widgets/article_list.dart';
+import 'package:pondok/presentation/pages/home/widgets/poster_carousel.dart';
+import 'package:pondok/presentation/pages/home/blocs/prayer_times_bloc.dart';
+import 'package:pondok/presentation/pages/home/widgets/article_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

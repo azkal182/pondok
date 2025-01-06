@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/entities/poster.dart';
+import '../../../../domain/entities/poster.dart';
 import 'package:equatable/equatable.dart';
-import '../../../domain/usecases/get_posters.dart';
+import '../../../../domain/usecases/get_posters.dart';
 
 part 'poster_event.dart';
 part 'poster_state.dart';

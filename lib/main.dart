@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:pondok/app_router.dart';
 import 'package:pondok/core/theme.dart';
-import 'package:pondok/presentation/home/blocs/poster_bloc.dart';
-import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
-import 'package:pondok/presentation/home/pages/home_page.dart';
+import 'package:pondok/presentation/pages/home/blocs/poster_bloc.dart';
+import 'package:pondok/presentation/pages/home/blocs/prayer_times_bloc.dart';
+import 'package:pondok/presentation/pages/home/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'injection.dart' as di;
 

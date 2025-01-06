@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:pondok/injection.dart' as di;
-import 'package:pondok/presentation/home/blocs/post_bloc.dart';
-import 'package:pondok/presentation/home/widgets/post_skeleton.dart';
-import '../../../domain/entities/post.dart';
+import 'package:pondok/presentation/pages/home/blocs/post_bloc.dart';
+import 'package:pondok/presentation/pages/home/widgets/post_skeleton.dart';
+import '../../../../domain/entities/post.dart';
 
 class ArticleList extends StatefulWidget {
   const ArticleList({super.key});

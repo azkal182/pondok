@@ -68,7 +68,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
+import 'package:pondok/presentation/pages/home/blocs/prayer_times_bloc.dart';
 
 class SholatPage extends StatefulWidget {
   const SholatPage({super.key});

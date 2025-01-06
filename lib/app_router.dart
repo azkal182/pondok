@@ -1,17 +1,17 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart";
-import "package:pondok/presentation/buku_santri/pages/buku_santri_page.dart";
-import "package:pondok/presentation/calendar/pages/calendar_page.dart";
-import "package:pondok/presentation/dakwah/pages/dakwah_page.dart";
-import "package:pondok/presentation/home/pages/home_page.dart";
-import "package:pondok/presentation/profile/pages/profile_page.dart";
-import "package:pondok/presentation/qiblat/pages/qiblat_page.dart";
-import "package:pondok/presentation/quran/pages/quran_page.dart";
-import "package:pondok/presentation/setting/pages/setting_page.dart";
-import "package:pondok/presentation/sholat/pages/sholat_page.dart";
-import "package:pondok/presentation/sidafa/pages/sidafa_page.dart";
-import "package:pondok/presentation/store/pages/store_page.dart";
+import "package:pondok/presentation/pages/buku_santri/pages/buku_santri_page.dart";
+import "package:pondok/presentation/pages/calendar/pages/calendar_page.dart";
+import "package:pondok/presentation/pages/dakwah/pages/dakwah_page.dart";
+import "package:pondok/presentation/pages/home/pages/home_page.dart";
+import "package:pondok/presentation/pages/profile/pages/profile_page.dart";
+import "package:pondok/presentation/pages/qiblat/pages/qiblat_page.dart";
+import "package:pondok/presentation/pages/quran/pages/quran_page.dart";
+import "package:pondok/presentation/pages/setting/pages/setting_page.dart";
+import "package:pondok/presentation/pages/sholat/pages/sholat_page.dart";
+import "package:pondok/presentation/pages/sidafa/pages/sidafa_page.dart";
+import "package:pondok/presentation/pages/store/pages/store_page.dart";
 
 GoRouter appRouter() {
   final parentKey = GlobalKey<NavigatorState>();
