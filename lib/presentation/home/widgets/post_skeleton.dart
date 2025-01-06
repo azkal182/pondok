@@ -25,7 +25,7 @@ class PostSkeleton extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 5),
             // Skeleton untuk konten
             Expanded(
               child: Column(

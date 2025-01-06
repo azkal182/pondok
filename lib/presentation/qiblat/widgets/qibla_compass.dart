@@ -1,15 +1,17 @@
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
+import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pondok/core/widgets/compass.dart';
 
-class QiblatPage extends StatefulWidget {
-  const QiblatPage({super.key});
+class QiblaCompass extends StatefulWidget {
+  const QiblaCompass({super.key});
 
   @override
-  State<QiblatPage> createState() => _QiblatPageState();
+  State<QiblaCompass> createState() => _QiblaCompassState();
 }
 
-class _QiblatPageState extends State<QiblatPage> {
+class _QiblaCompassState extends State<QiblaCompass> {
   bool hasPermission = false;
 
   @override
@@ -38,15 +40,9 @@ class _QiblatPageState extends State<QiblatPage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text("Qiblat"),
-      ),
-      body:  hasPermission ? const Compass() : const Text("Permission failed")
-    );
+    return hasPermission ? const Compass() : const Text("Permission failed");
   }
 }
