@@ -67,6 +67,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
 
@@ -175,14 +176,20 @@ class _SholatPageState extends State<SholatPage> {
             return Column(
               children: [
                 if (nextPrayerTime != null && nextPrayerName != null)
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+
+                    ),
                     child: Text(
                       "Sholat Berikutnya: $nextPrayerName\n${_formatDuration(remainingTime)}",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.roboto(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimary
                       ),
                     ),
                   ),
@@ -192,6 +199,7 @@ class _SholatPageState extends State<SholatPage> {
                     itemBuilder: (context, index) {
                       final prayerTime = state.prayerTimes.prayerTimes[index];
                       return ListTile(
+                        tileColor: prayerTime.name == nextName ? Theme.of(context).colorScheme.primary.withOpacity(0.2) : null,
                         title: Text(
                           prayerTime.name,
                           style: GoogleFonts.roboto(

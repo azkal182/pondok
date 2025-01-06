@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:pondok/core/utils/date.dart';
 import 'package:pondok/core/widgets/menu_item.dart' as menu;
 import 'package:pondok/core/widgets/poster_carousel.dart';
 import 'package:pondok/presentation/home/blocs/prayer_times_bloc.dart';
@@ -190,6 +192,7 @@ class _HomePageState extends State<HomePage> {
                                   'name': e.name,
                                   'time': _parseTime(e.time),
                                 })
+                        .where((e)=>e['name'] != 'Sunset' && e['name'] != 'Terbit')
                             .toList();
 
                         final nextPrayer = todayPrayerTimes.firstWhere(
@@ -235,9 +238,9 @@ class _HomePageState extends State<HomePage> {
                                     fontWeight: FontWeight.w600),
                               ),
                                 Text(
-                                  "11 Desember 2024 / 02 Jumadul Awal 1446",
+                      '${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now())} / ${DateHelper.convertToHijri(DateTime.now(), pattern: "dd MMMM yyyy")}',
                                   style: GoogleFonts.roboto(
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                     color: Color(0xFF363636),
                                   ),
                                 ),
