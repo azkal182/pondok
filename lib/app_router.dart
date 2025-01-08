@@ -10,8 +10,11 @@ import "package:pondok/presentation/pages/qiblat/pages/qiblat_page.dart";
 import "package:pondok/presentation/pages/quran/pages/quran_page.dart";
 import "package:pondok/presentation/pages/setting/pages/setting_page.dart";
 import "package:pondok/presentation/pages/sholat/pages/sholat_page.dart";
+import "package:pondok/presentation/pages/login/pages/login_page.dart";
 import "package:pondok/presentation/pages/sidafa/pages/sidafa_page.dart";
 import "package:pondok/presentation/pages/store/pages/store_page.dart";
+import "domain/usecases/get_auth_data_usecase.dart";
+import 'injection.dart' as di;
 
 GoRouter appRouter() {
   final parentKey = GlobalKey<NavigatorState>();
@@ -19,6 +22,10 @@ GoRouter appRouter() {
 
   return GoRouter(
     navigatorKey: parentKey,
+    // redirect: (context, state) async {
+    //   final checkUserData = di.sl<GetAuthDataUseCase>();
+    //   return "/sidafa";
+    // },
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => PersistentTabView.router(
@@ -144,7 +151,19 @@ GoRouter appRouter() {
             routes: <RouteBase>[
               GoRoute(
                   path: "/sidafa",
-                  builder: (context, state) => const SidafaPage()),
+                  builder: (context, state) => const SidafaPage(),
+                  redirect: (context, state) async {
+                    final getAuthDataUseCase = di.sl<GetAuthDataUseCase>();
+                    final checkUserData = await getAuthDataUseCase();
+                    if (checkUserData == null) {
+                      return "/login";
+                    }
+                    return null;
+                  }),
+              GoRoute(
+                path: "/login",
+                builder: (context, state) => const LoginPage(),
+              ),
             ],
           ),
           StatefulShellBranch(

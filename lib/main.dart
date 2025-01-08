@@ -12,8 +12,9 @@ import 'package:pondok/presentation/pages/home/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'injection.dart' as di;
 
-void main() {
-  di.init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   HijriCalendar.setLocal('en');
   runApp(
     DevicePreview(
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
-            themeMode: ThemeMode.system,
+            themeMode: ThemeMode.light,
             routerConfig: appRouter(),
           ),
         );

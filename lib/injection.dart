@@ -1,13 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pondok/core/network/dio_provider.dart';
+import 'package:pondok/data/datasource/local/auth_local_datasource.dart';
 import 'package:pondok/data/datasource/local/prayer_time_datasorce.dart';
+import 'package:pondok/data/datasource/remote/auth_remote_datasource.dart';
 import 'package:pondok/data/datasource/remote/post_datasource.dart';
+import 'package:pondok/data/repositories/auth_repository_impl.dart';
 import 'package:pondok/data/repositories/prayer_time_repository_impl.dart';
+import 'package:pondok/domain/repositories/auth_repository.dart';
 import 'package:pondok/domain/repositories/prayer_time_repository.dart';
+import 'package:pondok/domain/usecases/clear_auth_data_usecase.dart';
+import 'package:pondok/domain/usecases/login_usecase.dart';
+import 'package:pondok/presentation/blocs/auth_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/post_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/poster_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/prayer_times_bloc.dart';
-import 'core/network/dio_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'data/datasource/remote/poster_remote_datasource.dart';
 import 'data/repositories/post_repository_impl.dart';
 import 'data/repositories/poster_repository_impl.dart';
@@ -15,18 +23,34 @@ import 'domain/repositories/post_repository.dart';
 import 'domain/repositories/poster_repository.dart';
 import 'domain/usecases/get_posters.dart';
 import 'domain/usecases/get_posts.dart';
+import 'domain/usecases/get_auth_data_usecase.dart';
 
 final sl = GetIt.instance;
 
-void init() {
-  // Bloc
-  sl.registerFactory(() => PostBloc(sl()));
-  sl.registerFactory(() => PosterBloc(sl()));
-  sl.registerFactory(() => PrayerTimesBloc(sl())); // Register PrayerTimesBloc
+Future<void> init() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  // shared pref
+  sl.registerSingleton<SharedPreferences>(sharedPreferences);
+
+  // dio provider
+  sl.registerLazySingleton<Dio>(() => DioProvider.publicDio,
+      instanceName: 'publicDio');
+  sl.registerLazySingleton<Dio>(() => DioProvider.privateDio,
+      instanceName: 'privateDio');
 
   // Use Cases
   sl.registerLazySingleton(() => GetPosts(sl()));
   sl.registerLazySingleton(() => GetPosters(sl()));
+  sl.registerLazySingleton(() => LoginUseCase(sl()));
+  sl.registerLazySingleton(() => GetAuthDataUseCase(sl()));
+  sl.registerLazySingleton(() => ClearAuthDataUsecase(sl()));
+
+  // Bloc
+  sl.registerFactory(() => PostBloc(sl()));
+  sl.registerFactory(() => PosterBloc(sl()));
+  sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => PrayerTimesBloc(sl())); // Register PrayerTimesBloc
 
   // Repository
   sl.registerLazySingleton<PostRepository>(
@@ -36,20 +60,32 @@ void init() {
     () => PosterRepositoryImpl(sl()),
   );
   sl.registerLazySingleton<PrayerTimesRepository>(
-    () => PrayerTimesRepositoryImpl(sl()), // Register PrayerTimesRepositoryImpl
+    () => PrayerTimesRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(sl(), sl()),
   );
 
   // Data Sources
   sl.registerLazySingleton<PostRemoteDataSource>(
-    () => PostRemoteDataSourceImpl(sl()),
+    () => PostRemoteDataSourceImpl(),
   );
   sl.registerLazySingleton<PosterRemoteDataSource>(
-    () => PosterRemoteDataSourceImpl(sl()),
+    () => PosterRemoteDataSourceImpl(),
   );
   sl.registerLazySingleton<PrayerTimesDataSource>(
-    () => PrayerTimesDataSource(), // Register PrayerTimesDataSource
+    () => PrayerTimesDataSource(),
   );
-
-  // Core
-  sl.registerLazySingleton(() => DioClient(Dio()));
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(
+      publicDio: sl<Dio>(instanceName: 'publicDio'),
+      privateDio: sl<Dio>(instanceName: 'privateDio'),
+    ),
+  );
+  // sl.registerLazySingleton<AuthRemoteDataSource>(
+  //   () => AuthRemoteDataSourceImpl(sl(), publicDio: null),
+  // );
+  sl.registerLazySingleton<AuthLocalDataSource>(
+    () => AuthLocalDataSourceImpl(),
+  );
 }
