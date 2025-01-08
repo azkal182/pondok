@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Entity for Authentication
 class AuthEntity extends Equatable {
   final String accessToken;
   final String refreshToken;
@@ -15,6 +16,7 @@ class AuthEntity extends Equatable {
   List<Object?> get props => [accessToken, refreshToken, userCredentials];
 }
 
+/// Entity for User Credentials
 class UserCredentialsEntity extends Equatable {
   final int id;
   final String idSantri;

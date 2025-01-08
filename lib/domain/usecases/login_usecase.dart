@@ -8,7 +8,24 @@ class LoginUseCase {
 
   LoginUseCase(this.repository);
 
-  Future<Either<Failure, AuthModel>> call(String username, String password) {
-    return repository.login(username, password);
+  Future<Either<Failure, AuthModel>> call(
+      String username, String password) async {
+    // Tunggu hasil dari repository.login
+    final result = await repository.login(username, password);
+
+    // Periksa apakah hasilnya sukses atau gagal
+    return result.fold(
+      (failure) async {
+        // Jika gagal, kembalikan Left dengan failure
+        return Left(failure);
+      },
+      (authData) async {
+        // Jika sukses, simpan data autentikasi
+        await repository.saveAuthData(authData);
+
+        // Kembalikan Right dengan authData
+        return Right(authData);
+      },
+    );
   }
 }

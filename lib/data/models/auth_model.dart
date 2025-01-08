@@ -1,25 +1,33 @@
-// data/models/auth_model.dart
 import 'dart:convert';
 
-class AuthModel {
+import 'package:pondok/domain/entities/auth_entity.dart';
+
+/// Model for Authentication, extending AuthEntity
+class AuthModel extends AuthEntity {
   final String accessToken;
   final String refreshToken;
-  final UserCredentials userCredentials;
+  final UserCredentialsModel userCredentials;
 
-  AuthModel({
+  const AuthModel({
     required this.accessToken,
     required this.refreshToken,
     required this.userCredentials,
-  });
+  }) : super(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          userCredentials: userCredentials,
+        );
 
+  /// Factory method to create an instance from JSON.
   factory AuthModel.fromJson(Map<String, dynamic> json) {
     return AuthModel(
       accessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
-      userCredentials: UserCredentials.fromJson(json['userCredentials']),
+      userCredentials: UserCredentialsModel.fromJson(json['userCredentials']),
     );
   }
 
+  /// Converts the model to JSON format.
   Map<String, dynamic> toJson() {
     return {
       'accessToken': accessToken,
@@ -28,43 +36,45 @@ class AuthModel {
     };
   }
 
-  // Untuk mengonversi ke string JSON
+  /// Converts the model to a JSON string.
   String toJsonString() {
-    return jsonEncode(this.toJson());
+    return jsonEncode(toJson());
   }
 
-  // Untuk mengonversi dari string JSON
+  /// Creates an instance from a JSON string.
   static AuthModel fromJsonString(String jsonString) {
     final Map<String, dynamic> json = jsonDecode(jsonString);
     return AuthModel.fromJson(json);
   }
 }
 
-class UserCredentials {
-  final int id;
-  final String idSantri;
-  final String noRekening;
-  final String nis;
-  final String nama;
-  final String username;
-  final String level;
-  final int iat;
-  final int exp;
+/// Model for User Credentials, extending UserCredentialsEntity
+class UserCredentialsModel extends UserCredentialsEntity {
+  const UserCredentialsModel({
+    required int id,
+    required String idSantri,
+    required String noRekening,
+    required String nis,
+    required String nama,
+    required String username,
+    required String level,
+    required int iat,
+    required int exp,
+  }) : super(
+          id: id,
+          idSantri: idSantri,
+          noRekening: noRekening,
+          nis: nis,
+          nama: nama,
+          username: username,
+          level: level,
+          iat: iat,
+          exp: exp,
+        );
 
-  UserCredentials({
-    required this.id,
-    required this.idSantri,
-    required this.noRekening,
-    required this.nis,
-    required this.nama,
-    required this.username,
-    required this.level,
-    required this.iat,
-    required this.exp,
-  });
-
-  factory UserCredentials.fromJson(Map<String, dynamic> json) {
-    return UserCredentials(
+  /// Factory method to create an instance from JSON.
+  factory UserCredentialsModel.fromJson(Map<String, dynamic> json) {
+    return UserCredentialsModel(
       id: json['id'],
       idSantri: json['id_santri'],
       noRekening: json['no_rekening'],
@@ -77,6 +87,7 @@ class UserCredentials {
     );
   }
 
+  /// Converts the model to JSON format.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

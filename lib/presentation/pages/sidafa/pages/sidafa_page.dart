@@ -33,12 +33,20 @@ class _SidafaPageState extends State<SidafaPage> {
                     );
                   }
                   if (state is UserLoaded) {
-                    return Text(
-                      'Hello, ${state.user.userCredentials.nama}',
-                      style: const TextStyle(fontSize: 18),
+                    return Column(
+                      children: [
+                        Text(
+                          'Nama, ${state.user.userCredentials.nama}',
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          'NIS, ${state.user.userCredentials.nis}',
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ],
                     );
                   }
-                 
+
                   return const Text("Error: Tidak dapat mengambil data.");
                 },
               ),

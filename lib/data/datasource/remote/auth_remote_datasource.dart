@@ -54,6 +54,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         '${AppConfig.baseUrlSidafa}/auth/login',
         data: {'username': username, 'password': password},
       );
+
       // Parsing response ke AuthModel
       final authModel = AuthModel.fromJson(response.data);
 
@@ -62,7 +63,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       return authModel;
     } on DioException catch (e) {
-      print(e);
       throw Exception('Login failed: ${e.response?.data ?? e.message}');
     }
   }
