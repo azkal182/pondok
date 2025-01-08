@@ -54,6 +54,7 @@
 // }
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pondok/core/constants/app_config.dart';
 import 'package:pondok/core/utils/shared_preferences_helper.dart';
 
@@ -76,6 +77,9 @@ class DioClient {
         onError: (DioException error, handler) async {
           if (error.response?.statusCode == 401 &&
               dio.options.baseUrl.contains(AppConfig.baseUrlSidafa)) {
+            if (kDebugMode) {
+              print("request refresh token");
+            }
             // Tangani token refresh hanya untuk private API
             final newToken = await SharedPreferencesHelper.getRefreshToken();
             if (newToken != null) {

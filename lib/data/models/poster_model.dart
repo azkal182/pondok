@@ -4,18 +4,12 @@ import '../../domain/entities/poster.dart';
 
 class PosterModel extends Poster {
   PosterModel({
-    required int id,
-    required String description,
-    required String url,
-    required DateTime createdAt,
-    required bool publish,
-  }) : super(
-          id: id,
-          description: description,
-          url: url,
-          createdAt: createdAt,
-          publish: publish,
-        );
+    required super.id,
+    required super.description,
+    required super.url,
+    required super.createdAt,
+    required super.publish,
+  });
 
   // Factory method to create PosterModel from JSON
   factory PosterModel.fromJson(Map<String, dynamic> json) {

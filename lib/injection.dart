@@ -4,14 +4,19 @@ import 'package:pondok/core/network/dio_provider.dart';
 import 'package:pondok/data/datasource/local/auth_local_datasource.dart';
 import 'package:pondok/data/datasource/local/prayer_time_datasorce.dart';
 import 'package:pondok/data/datasource/remote/auth_remote_datasource.dart';
+import 'package:pondok/data/datasource/remote/balance_remote_datasource.dart';
 import 'package:pondok/data/datasource/remote/post_datasource.dart';
 import 'package:pondok/data/repositories/auth_repository_impl.dart';
+import 'package:pondok/data/repositories/balance_repository_impl.dart';
 import 'package:pondok/data/repositories/prayer_time_repository_impl.dart';
 import 'package:pondok/domain/repositories/auth_repository.dart';
+import 'package:pondok/domain/repositories/balance_repository.dart';
 import 'package:pondok/domain/repositories/prayer_time_repository.dart';
 import 'package:pondok/domain/usecases/clear_auth_data_usecase.dart';
+import 'package:pondok/domain/usecases/get_balance_usecase.dart';
 import 'package:pondok/domain/usecases/login_usecase.dart';
 import 'package:pondok/presentation/blocs/auth_bloc.dart';
+import 'package:pondok/presentation/blocs/balance_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/post_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/poster_bloc.dart';
 import 'package:pondok/presentation/pages/home/blocs/prayer_times_bloc.dart';
@@ -45,9 +50,11 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => GetAuthDataUseCase(sl()));
   sl.registerLazySingleton(() => ClearAuthDataUsecase(sl()));
+  sl.registerLazySingleton(() => GetBalanceUsecase(sl()));
 
   // Bloc
   sl.registerFactory(() => PostBloc(sl()));
+  sl.registerFactory(() => BalanceBloc(sl()));
   sl.registerFactory(() => PosterBloc(sl()));
   sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
   sl.registerFactory(() => PrayerTimesBloc(sl())); // Register PrayerTimesBloc
@@ -65,6 +72,9 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(sl(), sl()),
   );
+  sl.registerLazySingleton<BalanceRepository>(
+    () => BalanceRepositoryImpl(sl()),
+  );
 
   // Data Sources
   sl.registerLazySingleton<PostRemoteDataSource>(
@@ -76,15 +86,16 @@ Future<void> init() async {
   sl.registerLazySingleton<PrayerTimesDataSource>(
     () => PrayerTimesDataSource(),
   );
+
+  sl.registerLazySingleton<BalanceRemoteDataSource>(
+    () => BalanceRemoteDataSourceImpl(),
+  );
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(
       publicDio: sl<Dio>(instanceName: 'publicDio'),
       privateDio: sl<Dio>(instanceName: 'privateDio'),
     ),
   );
-  // sl.registerLazySingleton<AuthRemoteDataSource>(
-  //   () => AuthRemoteDataSourceImpl(sl(), publicDio: null),
-  // );
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(),
   );

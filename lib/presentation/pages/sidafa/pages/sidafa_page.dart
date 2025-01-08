@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pondok/core/utils/format_currency.dart';
 import 'package:pondok/injection.dart' as di;
 import 'package:pondok/presentation/blocs/auth_bloc.dart';
+import 'package:pondok/presentation/blocs/balance_bloc.dart';
 
 class SidafaPage extends StatefulWidget {
-  const SidafaPage({Key? key}) : super(key: key);
+  const SidafaPage({super.key});
 
   @override
   State<SidafaPage> createState() => _SidafaPageState();
@@ -14,8 +16,15 @@ class SidafaPage extends StatefulWidget {
 class _SidafaPageState extends State<SidafaPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => di.sl<AuthBloc>()..add(GetUserData()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => di.sl<AuthBloc>()..add(GetUserData()),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<BalanceBloc>()..add(GetBalanceEvent()),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Sidafa"),
@@ -32,22 +41,36 @@ class _SidafaPageState extends State<SidafaPage> {
                       child: CircularProgressIndicator(),
                     );
                   }
+
                   if (state is UserLoaded) {
                     return Column(
                       children: [
-                        Text(
-                          'Nama, ${state.user.userCredentials.nama}',
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                        Text(
-                          'NIS, ${state.user.userCredentials.nis}',
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        _buildInfoRow('Nama', state.user.userCredentials.nama),
+                        _buildInfoRow('NIS', state.user.userCredentials.nis),
                       ],
                     );
                   }
 
                   return const Text("Error: Tidak dapat mengambil data.");
+                },
+              ),
+              BlocBuilder<BalanceBloc, BalanceState>(
+                builder: (context, state) {
+                  String saldoTabungan = "Rp. -";
+                  String saldoUpt = "Rp. -";
+
+                  if (state is BalanceLoaded) {
+                    saldoTabungan =
+                        formatCurrency(state.balance.saldoTabunganInt);
+                    saldoUpt = formatCurrency(state.balance.saldoUpt);
+                  }
+
+                  return Column(
+                    children: [
+                      _buildInfoRow('Tabungan', saldoTabungan),
+                      _buildInfoRow('UPT', saldoUpt),
+                    ],
+                  );
                 },
               ),
               const SizedBox(height: 20),
@@ -70,6 +93,32 @@ class _SidafaPageState extends State<SidafaPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Helper function to build rows with consistent spacing
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 80, // Set width for all labels to be consistent
+            child: Text(
+              '$label',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
+          const SizedBox(width: 10), // Fixed space between label and value
+          Expanded(
+            child: Text(
+              ': ${value}',
+              style: const TextStyle(fontSize: 18),
+              overflow: TextOverflow.ellipsis, // Ensures text does not overflow
+            ),
+          ),
+        ],
       ),
     );
   }
