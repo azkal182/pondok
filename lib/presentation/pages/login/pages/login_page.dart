@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 80,
                               height: 200,
                               child: FadeInUp(
-                                duration: Duration(milliseconds: 500),
+                                duration: Duration(milliseconds: 300),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 80,
                               height: 150,
                               child: FadeInUp(
-                                duration: Duration(milliseconds: 600),
+                                duration: Duration(milliseconds: 400),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 80,
                               height: 150,
                               child: FadeInUp(
-                                duration: Duration(milliseconds: 700),
+                                duration: Duration(milliseconds: 500),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             Positioned(
                               child: FadeInUp(
-                                duration: Duration(milliseconds: 800),
+                                duration: Duration(milliseconds: 600),
                                 child: Container(
                                   margin: EdgeInsets.only(top: 50),
                                   child: Center(
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           children: <Widget>[
                             FadeInUp(
-                              duration: Duration(milliseconds: 1000),
+                              duration: Duration(milliseconds: 800),
                               child: Container(
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
@@ -188,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SizedBox(height: 30),
                             FadeInUp(
-                              duration: Duration(milliseconds: 1200),
+                              duration: Duration(milliseconds: 1000),
                               child: ElevatedButton(
                                 onPressed: () {
                                   final username =
